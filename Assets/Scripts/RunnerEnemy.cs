@@ -29,7 +29,6 @@ public class RunnerEnemy : Enemy
 
         RaycastHit2D hitGround = Physics2D.Raycast(new Vector2(rb.transform.position.x + ((runDir) ? 1f : -1f) * (2*rb.GetComponent<BoxCollider2D>().size.x), rb.transform.position.y + rb.GetComponent<BoxCollider2D>().size.y), Vector2.down, 1f, (1<<8), -Mathf.Infinity);
 
-        Debug.Log(hitGround.collider == null);
         if (hitGround.collider == null || hitWall.collider != null)
         {
             runDir = !runDir;
