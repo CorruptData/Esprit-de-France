@@ -22,7 +22,7 @@ public class Enemy : Character
     {
         if (col.tag == "player")
         {
-            col.gameObject.GetComponent<Player>().Hurt(1);
+            col.gameObject.GetComponent<Player>().Hurt(1, 1f);
         }
     }
 }

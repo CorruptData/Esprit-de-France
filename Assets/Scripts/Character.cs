@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    protected float accelX = 0.0f;
-    protected float accelY = 0.0f;
-
-    protected float speedX = 0.0f;
-    protected float speedY = 0.0f;
-
     public float runAccel = 1.0f;
     public float runCap = 1.0f;
     public float jumpSpeed = 1.0f;
@@ -92,7 +86,7 @@ public class Character : MonoBehaviour
 
     }
 
-    public void Hurt(int damage)
+    public void Hurt(int damage, float knockback)
     {
         if (invulnFrames > invulnTime)
         {
@@ -105,6 +99,38 @@ public class Character : MonoBehaviour
                 Die();
             }
         }
+    }
+
+    public void FirePrimary(Weapon.Direction dir)
+    {
+        Weapon w = GetComponentInChildren<Weapon>();
+
+        // player is facing right
+        w.Primary(dir);
+    }
+
+    public void FirePrimary(float dir)
+    {
+        Weapon w = GetComponentInChildren<Weapon>();
+
+        // player is facing right
+        w.Primary(dir);
+    }
+
+    public void FireSecondary(Weapon.Direction dir)
+    {
+        Weapon w = GetComponentInChildren<Weapon>();
+
+        // player is facing right
+        w.Secondary(dir);
+    }
+
+    public void FireSecondary(float dir)
+    {
+        Weapon w = GetComponentInChildren<Weapon>();
+
+        // player is facing right
+        w.Secondary(dir);
     }
 
     protected void Die()

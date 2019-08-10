@@ -48,19 +48,16 @@ public class Player : Character
         
         if (Input.GetKeyDown(KeyCode.F))
         {
-            //anim.SetTrigger("Shoot");
-            AudioSource.PlayClipAtPoint(shoot, transform.position);
+            Weapon w = GetComponentInChildren<Weapon>();
             
             // player is facing right
             if (facedRight)
             {
-                Rigidbody2D bulletInstance = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, transform.position.z-.2f), Quaternion.Euler(new Vector3(0f, -1f, 0))).GetComponent<Rigidbody2D>();
-                bulletInstance.velocity = new Vector2(bulletSpeed, 0);
+                w.Primary(Weapon.Direction.right);
             }
             else
             {
-                Rigidbody2D bulletInstance = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, transform.position.z-.2f), Quaternion.Euler(new Vector3(-0f, -1f, 180f))).GetComponent<Rigidbody2D>();
-                bulletInstance.velocity = new Vector2(-bulletSpeed, 0);
+                w.Primary(Weapon.Direction.left);
             }
         }
         if (invulnFrames < invulnTime)

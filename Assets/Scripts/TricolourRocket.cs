@@ -25,7 +25,7 @@ public class TricolourRocket : MonoBehaviour
     {
         if (col.tag == "enemy")
         {
-            col.gameObject.GetComponent<Enemy>().Hurt(1);
+            col.gameObject.GetComponent<Enemy>().Hurt(1, 2f);
             
             OnExplode();
             

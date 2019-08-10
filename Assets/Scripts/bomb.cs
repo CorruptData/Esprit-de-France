@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class bomb : MonoBehaviour
 {
+    public int damage = 1;
+    public float knockback = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +23,7 @@ public class bomb : MonoBehaviour
     {
         if (col.tag == "enemy")
         {
-            col.gameObject.GetComponent<Enemy>().Hurt(1);
+            col.gameObject.GetComponent<Enemy>().Hurt(1, 2f);
         }
     }
 }
