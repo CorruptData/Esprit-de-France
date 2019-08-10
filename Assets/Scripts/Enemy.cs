@@ -8,15 +8,13 @@ public class Enemy : Character
 
     // Start is called before the first frame update
 
+
     void Update()
     {
         DoAI();
     }
 
-    void DoAI()
-    {
-
-    }
+    public abstract void DoAI();
 
     void OnTriggerEnter2D(Collider2D col)
     {
