@@ -39,8 +39,12 @@ public class StraightProjectileGun : Weapon
         }
     }
 
+    public override void Primary(float dir) { }
+
     public override void Secondary(Direction dir)
     {
 
     }
+
+    public override void Secondary(float dir) { }
 }

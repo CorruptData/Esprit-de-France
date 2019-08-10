@@ -47,19 +47,8 @@ public class Player : Character
         Move( Input.GetAxis("Horizontal"));
         
         if (Input.GetKeyDown(KeyCode.F))
-        {
-            Weapon w = GetComponentInChildren<Weapon>();
-            
-            // player is facing right
-            if (facedRight)
-            {
-                w.Primary(Weapon.Direction.right);
-            }
-            else
-            {
-                w.Primary(Weapon.Direction.left);
-            }
-        }
+            FirePrimary();
+
         if (invulnFrames < invulnTime)
         {
             if (invulnFrames % 2 == 0)

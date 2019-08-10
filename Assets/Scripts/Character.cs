@@ -101,12 +101,19 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void FirePrimary(Weapon.Direction dir)
+    public void FirePrimary()
     {
         Weapon w = GetComponentInChildren<Weapon>();
 
         // player is facing right
-        w.Primary(dir);
+        if (facedRight)
+        {
+            w.Primary(Weapon.Direction.right);
+        }
+        else
+        {
+            w.Primary(Weapon.Direction.left);
+        }
     }
 
     public void FirePrimary(float dir)
@@ -117,12 +124,19 @@ public class Character : MonoBehaviour
         w.Primary(dir);
     }
 
-    public void FireSecondary(Weapon.Direction dir)
+    public void FireSecondary()
     {
         Weapon w = GetComponentInChildren<Weapon>();
 
         // player is facing right
-        w.Secondary(dir);
+        if (facedRight)
+        {
+            w.Secondary(Weapon.Direction.right);
+        }
+        else
+        {
+            w.Secondary(Weapon.Direction.left);
+        }
     }
 
     public void FireSecondary(float dir)
