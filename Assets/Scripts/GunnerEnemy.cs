@@ -4,35 +4,33 @@ using UnityEngine;
 
 public class GunnerEnemy : Enemy
 {
-    public bool pursuePlayer;
     public float pursuePlayerRange;
     bool aggro;
     public float yTolerance;
+
+    public float JUMP_COOLDOWN_MAX = 2f;
+    public float jumpCooldown;
 
 
     public float TEMP_FIRE_COOLDOWN_MAX = 1f;
     public float TEMP_FIRE_COOLDOWN = 0;
     public override void DoAI()
     {
+        aggro = Vector2.Distance(GameObject.FindGameObjectWithTag("player").transform.position, this.transform.position) < pursuePlayerRange;
+
         if (aggro)
         {
             fightPlayer();
         }
         else
         {
-            if (Vector2.Distance(GameObject.FindGameObjectWithTag("player").transform.position, this.transform.position) < pursuePlayerRange)
-            {
-                aggro = true;
-            }
-            else
-            {
-                patrol();
-            }
+            patrol();
         }
     }
 
     public void fightPlayer()
     {
+        jumpCooldown -= Time.deltaTime;
         TEMP_FIRE_COOLDOWN -= Time.deltaTime;
 
         // face player if we arent.
@@ -55,9 +53,9 @@ public class GunnerEnemy : Enemy
                 }
             } else
             {
-                if (ydiff > 0)
+                if (ydiff > 0 && jumpCooldown < 0)
                 {
-                    Debug.Log("jump");
+                    jumpCooldown = JUMP_COOLDOWN_MAX;
                     // Jump to get into position. 
                     Jump();
                 }

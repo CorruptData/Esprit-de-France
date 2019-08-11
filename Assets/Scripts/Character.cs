@@ -87,7 +87,6 @@ public class Character : MonoBehaviour
             // Apply upward force if normal is not zero.
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1, 1 << 8);
 
-            Debug.Log(hit.normal.x);
 
             // If the sign does not math the direction help the player up the slope.
             if (hit && (Mathf.Sign(hit.normal.x) != Mathf.Sign(h)))
