@@ -34,7 +34,7 @@ public class AltCameraFollow: MonoBehaviour
 
     private void Calculate()
     {
-        int zoom = (int)Mathf.Max(1f, (Screen.height / 240f));
+        int zoom = (int)Mathf.Max(1f, (Screen.height / 270f));
         camera.orthographicSize = ((Screen.height / 2f) / (float)pixelsPerUnit) / (float)zoom;
     }
 }
