@@ -72,9 +72,8 @@ public class Character : MonoBehaviour
     {
 
         //anim.SetFloat("Speed", Mathf.Abs(h));
-        NormalizeSlope();
         if (h * GetComponent<Rigidbody2D>().velocity.x < runCap)
-            GetComponent<Rigidbody2D>().AddForce(Vector2.right * h * runAccel);
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(h, 0f) * runAccel);
 
         if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > runCap)
             GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * runCap, GetComponent<Rigidbody2D>().velocity.y);
@@ -82,6 +81,20 @@ public class Character : MonoBehaviour
         if ((h > 0 && !facedRight) ||
             (h < 0 && facedRight))
             Flip();
+
+        if (grounded && h != 0)
+        {
+            // Apply upward force if normal is not zero.
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1, 1 << 8);
+
+            Debug.Log(hit.normal.x);
+
+            // If the sign does not math the direction help the player up the slope.
+            if (hit && (Mathf.Sign(hit.normal.x) != Mathf.Sign(h)))
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, (Mathf.Abs(hit.normal.x)) + GetComponent<Rigidbody2D>().velocity.y);
+            }
+        }
     }
 
     protected void Flip()
@@ -167,27 +180,6 @@ public class Character : MonoBehaviour
         Destroy(gameObject);
     }
 
-    protected void NormalizeSlope()
-    {
-        // Attempt vertical normalization
-        if (grounded)
-        {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, -Vector2.up, 1f, 1 << LayerMask.NameToLayer("Ground"));
-
-            if (hit.collider != null && Mathf.Abs(hit.normal.x) > 0.1f)
-            {
-                Rigidbody2D body = GetComponent<Rigidbody2D>();
-                // Apply the opposite force against the slope force 
-                // You will need to provide your own slopeFriction to stabalize movement
-                body.velocity = new Vector2(body.velocity.x - (hit.normal.x * .4f), body.velocity.y);
-
-                //Move Player up or down to compensate for the slope below them
-                Vector3 pos = transform.position;
-                pos.y += -hit.normal.x * Mathf.Abs(body.velocity.x) * Time.deltaTime * (body.velocity.x - hit.normal.x > 0 ? 1 : -1);
-                transform.position = pos;
-            }
-        }
-    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
