@@ -2361,10 +2361,13 @@ MonoBehaviour:
   damage: 1
   pursuePlayerRange: 3
   yTolerance: 0.3
+  f: {fileID: 5037241010142350222}
   JUMP_COOLDOWN_MAX: 2
   jumpCooldown: 0
-  TEMP_FIRE_COOLDOWN_MAX: 1
+  TEMP_FIRE_COOLDOWN_MAX: 3
   TEMP_FIRE_COOLDOWN: 0
+  FIREAIMTIMEMAX: 0.8
+  fireaimtime: -100
 --- !u!61 &1891832342902289890
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2414,7 +2417,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5037241010142350221}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: ccadf0fd7d58ec24da765c2c52fb312e, type: 2}
   m_CullingMode: 1
@@ -2529,7 +2532,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5037241010142350221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.98, y: 1.27, z: -0.2460079}
+  m_LocalPosition: {x: -9.5, y: 1.27, z: -0.2460079}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2011917515}
@@ -2573,6 +2576,7 @@ GameObject:
   - component: {fileID: 3355368312993950243}
   - component: {fileID: 3979052991874886907}
   - component: {fileID: 1575871253314331563}
+  - component: {fileID: 5037241010142350222}
   m_Layer: 0
   m_Name: Skelegunner
   m_TagString: enemy
@@ -2580,6 +2584,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &5037241010142350222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5037241010142350221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ae960e4a3d805646985a47d175d330b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteOrig: {fileID: 21300000, guid: eb4d991be0e9249409458501b8622e0a, type: 3}
 --- !u!1001 &5197503637383179058
 PrefabInstance:
   m_ObjectHideFlags: 0
