@@ -32,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 1433378070354764953}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5945771, y: -2.1041484, z: -0.2460079}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8430755057712695333}
   m_Father: {fileID: 0}
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1433378070354764953}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8c4d28e568e9254582ba549921e0e1b, type: 3}
+  m_Script: {fileID: 11500000, guid: 711df7cf73f07cf4a9a7b1dc269a83cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   runAccel: 1
@@ -230,6 +230,11 @@ MonoBehaviour:
   bulletSpeed: 2
   bullet: {fileID: 0}
   damage: 1
+  pursuePlayer: 0
+  pursuePlayerRange: 0
+  yTolerance: 0
+  TEMP_FIRE_COOLDOWN_MAX: 1
+  TEMP_FIRE_COOLDOWN: 0
 --- !u!1 &2215638997391924462
 GameObject:
   m_ObjectHideFlags: 0

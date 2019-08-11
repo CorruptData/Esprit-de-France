@@ -24,6 +24,14 @@ public abstract class Enemy : Character
         }
     }
 
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.tag == "player")
+        {
+            col.gameObject.GetComponent<Player>().Hurt(1, 1f);
+        }
+    }
+
     public void patrol()
     {
         bool runDir = facedRight;

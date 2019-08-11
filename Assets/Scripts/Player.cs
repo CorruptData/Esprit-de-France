@@ -37,7 +37,7 @@ public class Player : Character
 
         Move( Input.GetAxis("Horizontal"));
         
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKey(KeyCode.F))
             FirePrimary();
     }
 

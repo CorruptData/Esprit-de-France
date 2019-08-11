@@ -179,7 +179,7 @@ public class Character : MonoBehaviour
                 Rigidbody2D body = GetComponent<Rigidbody2D>();
                 // Apply the opposite force against the slope force 
                 // You will need to provide your own slopeFriction to stabalize movement
-                body.velocity = new Vector2(body.velocity.x - (hit.normal.x * .2f), body.velocity.y);
+                body.velocity = new Vector2(body.velocity.x - (hit.normal.x * .4f), body.velocity.y);
 
                 //Move Player up or down to compensate for the slope below them
                 Vector3 pos = transform.position;

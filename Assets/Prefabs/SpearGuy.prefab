@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 5782205496299104239}
   - component: {fileID: 4776620981613813126}
   - component: {fileID: 537124764830079102}
-  - component: {fileID: 4196444183270068716}
   - component: {fileID: 1891832343450015904}
   - component: {fileID: 7606649172438638001}
-  - component: {fileID: 5616217275080652061}
+  - component: {fileID: 7954381346848603719}
   m_Layer: 0
   m_Name: SpearGuy
   m_TagString: enemy
@@ -32,9 +31,8 @@ Transform:
   m_GameObject: {fileID: 4065242332262215460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.324, y: -2.065, z: -0.2460079}
-  m_LocalScale: {x: 2, y: 2, z: 1}
-  m_Children:
-  - {fileID: 4151484533107254236}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -134,31 +132,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.07201995, y: 0.1531372}
   m_EdgeRadius: 0
---- !u!114 &4196444183270068716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4065242332262215460}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17870f75658048743bfacedb77e83804, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  runAccel: 1
-  runCap: 1
-  jumpSpeed: 1
-  gravity: 0.5
-  maxJumpFrames: 20
-  jumpFrames: 20
-  hp: 5
-  invulnTime: 48
-  jumpSound: {fileID: 0}
-  step: {fileID: 0}
-  bulletSpeed: 2
-  bullet: {fileID: 0}
-  damage: 1
 --- !u!61 &1891832343450015904
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -204,7 +177,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5616217275080652061
+--- !u!114 &7954381346848603719
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,7 +186,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4065242332262215460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7baca746fdf691f49a4c22e9f56de92c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b13f31e086c3144c9a7b8d16507eb05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   runAccel: 1
@@ -222,40 +195,12 @@ MonoBehaviour:
   gravity: 0.5
   maxJumpFrames: 20
   jumpFrames: 20
-  hp: 5
-  invulnTime: 48
+  hp: 8
+  invulnTime: 24
   jumpSound: {fileID: 0}
   step: {fileID: 0}
   bulletSpeed: 2
   bullet: {fileID: 0}
   damage: 1
---- !u!1 &7356791756737253048
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4151484533107254236}
-  m_Layer: 0
-  m_Name: GroundChecker
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4151484533107254236
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7356791756737253048}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.12, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 3234697432518070008}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  pursuePlayer: 0
+  pursuePlayerRange: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class TricolourRocket : MonoBehaviour
 {
     public GameObject explosion;
+
     
     void Start()
     {
@@ -23,7 +24,7 @@ public class TricolourRocket : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "enemy")
+        if ((col.tag == "enemy")|| (col.tag == "player"))
         {
             col.gameObject.GetComponent<Character>().Hurt(1, 2f);
             

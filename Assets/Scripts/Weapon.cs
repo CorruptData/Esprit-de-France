@@ -4,6 +4,9 @@ using UnityEngine;
 
 public abstract class Weapon : MonoBehaviour
 {
+    public int MAX_COOLDOWN_FRAMES = 60;
+    protected int cooldown = 0;
+
     public abstract void Primary(Direction dir);
 
     public abstract void Primary(float dir);
