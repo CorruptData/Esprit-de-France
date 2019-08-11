@@ -31,7 +31,7 @@ public class GunnerEnemy : Enemy
         }
         else
         {
-            patrol();
+            //patrol();
         }
     }
 
@@ -78,7 +78,6 @@ public class GunnerEnemy : Enemy
 
     public void dofire()
     {
-        Debug.Log("dofire");
         TEMP_FIRE_COOLDOWN = TEMP_FIRE_COOLDOWN_MAX;
         // Can shoot player.
         f.onShoot();
