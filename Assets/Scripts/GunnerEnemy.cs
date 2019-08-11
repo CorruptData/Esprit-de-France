@@ -9,7 +9,7 @@ public class GunnerEnemy : Enemy
     public float yTolerance;
 
     public float JUMP_COOLDOWN_MAX = 2f;
-    public float jumpCooldown;
+    public float jumpCooldown = 0f;
 
 
     public float TEMP_FIRE_COOLDOWN_MAX = 1f;

@@ -23,7 +23,7 @@ public class AltCameraFollow: MonoBehaviour
         Calculate();
         if (p != null)
         {
-            camera.transform.localPosition = new Vector3(p.transform.localPosition.x, p.transform.localPosition.y, -10);
+            camera.transform.localPosition = new Vector3(p.transform.localPosition.x, Mathf.Max(1.5f,p.transform.localPosition.y), -10);
         }
     }
 
