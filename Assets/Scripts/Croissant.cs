@@ -7,6 +7,8 @@ public class Croissant : MonoBehaviour
 
     Rigidbody2D r;
     bool right = false;
+    bool first = true;
+
     void Start()
     {
         r = GetComponent<Rigidbody2D>();
@@ -17,12 +19,16 @@ public class Croissant : MonoBehaviour
     private void Awake()
     {
 
-        if (Mathf.Abs(r.velocity.x) > 0)
-            right = true;
     }
 
     void Update()
     {
+        if (first)
+            if (r.velocity.x > 0)
+                right = true;
+
+        first = false;
+
         r.velocity += new Vector2(((right ? -1f : 1f)*10f)/60f,0f);
     }
 
