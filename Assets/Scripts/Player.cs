@@ -28,11 +28,11 @@ public class Player : Character
 
         if (grounded && (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > 0.01f))
         {
-            //anim.SetTrigger("shootWalk");
+            anim.SetTrigger("shootWalk");
         }
         else
         {
-            //anim.SetTrigger("shootIdle");
+            anim.SetTrigger("shootIdle");
         }
 
         Move( Input.GetAxis("Horizontal"));
