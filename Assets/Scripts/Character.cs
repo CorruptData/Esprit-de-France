@@ -24,12 +24,10 @@ public class Character : MonoBehaviour
     protected float lastYPos = 0;
 
     protected bool hasControl = true;
-
-    protected Transform groundCheck;          // A position marking where to check if the player is grounded.
+    
     protected bool grounded = false;			// Whether or not the player is grounded.
 
     protected bool facedRight = true;
-    protected bool jump = false;
     protected Animator anim;
     protected SpriteRenderer sprender;
 
@@ -40,29 +38,41 @@ public class Character : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    protected void FixedUpdate()
+    {
+        if (invulnFrames < invulnTime)
+        {
+            if (invulnFrames % 2 == 0)
+            {
+                sprender.enabled = false;
+            }
+            else
+            {
+                sprender.enabled = true;
+            }
+        }
+        invulnFrames += 1;
+
+    }
+
     protected void Awake()
     {
-        groundCheck = transform.Find("GroundChecker");
+
     }
 
     protected void Jump()
     {
-        //anim.SetTrigger("Jump");
-
+        AudioSource.PlayClipAtPoint(jumpSound, transform.position);
 
         GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpSpeed));
-
-        jump = false;
 
     }
 
     protected void Move(float h)
     {
-        //transform.position += new Vector3(speedX, speedY, 0.0f);
-        //GetComponent<Rigidbody2D>().gravityScale = gravity;
 
         //anim.SetFloat("Speed", Mathf.Abs(h));
-
+        NormalizeSlope();
         if (h * GetComponent<Rigidbody2D>().velocity.x < runCap)
             GetComponent<Rigidbody2D>().AddForce(Vector2.right * h * runAccel);
 
@@ -84,21 +94,6 @@ public class Character : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
 
-    }
-
-    public void Hurt(int damage, float knockback)
-    {
-        if (invulnFrames > invulnTime)
-        {
-            // oeuf.ogg
-            invulnFrames = 0;
-            hp -= damage;
-
-            if (hp <= 0)
-            {
-                Die();
-            }
-        }
     }
 
     public void FirePrimary()
@@ -147,6 +142,26 @@ public class Character : MonoBehaviour
         w.Secondary(dir);
     }
 
+    public void Hurt(int damage, float knockback)
+    {
+        if (invulnFrames > invulnTime)
+        {
+            if (facedRight)
+                GetComponent<Rigidbody2D>().AddForce(Vector2.left * knockback);
+            else
+                GetComponent<Rigidbody2D>().AddForce(Vector2.right * knockback);
+
+            // oeuf.ogg
+            invulnFrames = 0;
+            hp -= damage;
+
+            if (hp <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
     protected void Die()
     {
         Destroy(gameObject);
@@ -164,13 +179,37 @@ public class Character : MonoBehaviour
                 Rigidbody2D body = GetComponent<Rigidbody2D>();
                 // Apply the opposite force against the slope force 
                 // You will need to provide your own slopeFriction to stabalize movement
-                body.velocity = new Vector2(body.velocity.x - (hit.normal.x * .5f), body.velocity.y);
+                body.velocity = new Vector2(body.velocity.x - (hit.normal.x * .2f), body.velocity.y);
 
                 //Move Player up or down to compensate for the slope below them
                 Vector3 pos = transform.position;
                 pos.y += -hit.normal.x * Mathf.Abs(body.velocity.x) * Time.deltaTime * (body.velocity.x - hit.normal.x > 0 ? 1 : -1);
                 transform.position = pos;
             }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "ground")
+        {
+            grounded = true;
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.tag == "ground")
+        {
+            grounded = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.tag == "ground")
+        {
+            grounded = false;
         }
     }
 }

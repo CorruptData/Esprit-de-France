@@ -22,7 +22,7 @@ public class Skelegunner : Character
     {
         if (col.tag == "player")
         {
-            col.gameObject.GetComponent<Player>().Hurt(1, 1f);
+            col.gameObject.GetComponent<Player>().Hurt(1, 2f);
         }
     }
 }

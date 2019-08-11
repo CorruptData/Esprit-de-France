@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public AudioClip shoot;
-
-    // Start is called before the first frame update
     /*
     void Start()
     {
@@ -23,44 +20,25 @@ public class Player : Character
     // Update is called once per frame
     void Update()
     {
-        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        //grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
         if (Input.GetKeyDown(KeyCode.UpArrow) && grounded && GetComponent<Rigidbody2D>().velocity.y <= 0)
-            jump = true;
-        
+            Jump();
+
 
         if (grounded && (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > 0.01f))
         {
-            anim.SetTrigger("shootWalk");
+            //anim.SetTrigger("shootWalk");
         }
         else
         {
-            anim.SetTrigger("shootIdle");
-        }
-        
-        if (jump)
-        {
-            Jump();
-            AudioSource.PlayClipAtPoint(jumpSound, transform.position);
+            //anim.SetTrigger("shootIdle");
         }
 
         Move( Input.GetAxis("Horizontal"));
         
         if (Input.GetKeyDown(KeyCode.F))
             FirePrimary();
-
-        if (invulnFrames < invulnTime)
-        {
-            if (invulnFrames % 2 == 0)
-            {
-                sprender.enabled = false;
-            }
-            else
-            {
-                sprender.enabled = true;
-            }
-        }
-        invulnFrames += 1;
     }
 
 }
