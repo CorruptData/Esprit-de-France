@@ -9,6 +9,9 @@ public class GunnerEnemy : Enemy
     bool aggro;
     public float yTolerance;
 
+
+    public float TEMP_FIRE_COOLDOWN_MAX = 1f;
+    public float TEMP_FIRE_COOLDOWN = 0;
     public override void DoAI()
     {
         if (aggro)
@@ -30,6 +33,8 @@ public class GunnerEnemy : Enemy
 
     public void fightPlayer()
     {
+        TEMP_FIRE_COOLDOWN -= Time.deltaTime;
+
         // face player if we arent.
         bool playerDir = GameObject.FindGameObjectWithTag("player").transform.position.x > this.transform.position.x;
         if(facedRight != playerDir)
@@ -42,12 +47,17 @@ public class GunnerEnemy : Enemy
 
             if (Mathf.Abs(ydiff) < yTolerance)
             {
-                // Can shoot player.
-                FirePrimary();
+                if (TEMP_FIRE_COOLDOWN < 0)
+                {
+                    TEMP_FIRE_COOLDOWN = TEMP_FIRE_COOLDOWN_MAX;
+                    // Can shoot player.
+                    FirePrimary();
+                }
             } else
             {
                 if (ydiff > 0)
                 {
+                    Debug.Log("jump");
                     // Jump to get into position. 
                     Jump();
                 }

@@ -2634,10 +2634,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711df7cf73f07cf4a9a7b1dc269a83cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runAccel: 1
+  runAccel: 50
   runCap: 1
-  jumpSpeed: 1
-  gravity: 0.5
+  jumpSpeed: 200
+  gravity: 1
   maxJumpFrames: 20
   jumpFrames: 20
   hp: 5
@@ -2649,7 +2649,9 @@ MonoBehaviour:
   damage: 1
   pursuePlayer: 1
   pursuePlayerRange: 100
-  yTolerance: 1
+  yTolerance: 0.5
+  TEMP_FIRE_COOLDOWN_MAX: 1
+  TEMP_FIRE_COOLDOWN: 0
 --- !u!61 &1891832342902289890
 BoxCollider2D:
   m_ObjectHideFlags: 0
